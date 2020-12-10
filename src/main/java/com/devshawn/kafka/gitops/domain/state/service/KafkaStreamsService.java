@@ -56,6 +56,10 @@ public abstract class KafkaStreamsService extends ServiceDetails {
         return acls;
     }
 
+    public void validate() {
+
+    }
+
     public static class Builder extends KafkaStreamsService_Builder {
     }
 }

@@ -79,6 +79,10 @@ public abstract class KafkaConnectService extends ServiceDetails {
         return String.format("connect-status-%s", serviceName);
     }
 
+    public void validate() {
+
+    }
+
     public static class Builder extends KafkaConnectService_Builder {
 
     }

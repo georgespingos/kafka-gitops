@@ -67,4 +67,9 @@ public class RoleService extends ServiceDetails {
                 .setPattern("LITERAL")
                 .setName("kafka-cluster");
     }
+
+    @Override
+    public void validate() {
+        throw new UnsupportedOperationException("Method getAcls is not implemented.");
+    }
 }

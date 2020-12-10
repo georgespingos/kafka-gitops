@@ -11,6 +11,7 @@ import com.devshawn.kafka.gitops.domain.state.AclDetails;
 import com.devshawn.kafka.gitops.domain.state.CustomAclDetails;
 import com.devshawn.kafka.gitops.domain.state.DesiredState;
 import com.devshawn.kafka.gitops.domain.state.DesiredStateFile;
+import com.devshawn.kafka.gitops.domain.state.ServiceDetails;
 import com.devshawn.kafka.gitops.domain.state.TopicDetails;
 import com.devshawn.kafka.gitops.domain.state.service.KafkaStreamsService;
 import com.devshawn.kafka.gitops.exception.ConfluentCloudException;
@@ -72,6 +73,7 @@ public class StateManager {
         DesiredStateFile desiredStateFile = parserService.parseStateFile();
         validateTopics(desiredStateFile);
         validateCustomAcls(desiredStateFile);
+        validateServices(desiredStateFile);
         this.describeAclEnabled = StateUtil.isDescribeTopicAclEnabled(desiredStateFile);
         return desiredStateFile;
     }
@@ -315,6 +317,10 @@ public class StateManager {
                 throw new ValidationException("The default replication factor must be a positive integer.");
             }
         }
+    }
+
+    private void validateServices(DesiredStateFile desiredStateFile) {
+        desiredStateFile.getServices().values().forEach(ServiceDetails::validate);
     }
 
     private boolean isConfluentCloudEnabled(DesiredStateFile desiredStateFile) {

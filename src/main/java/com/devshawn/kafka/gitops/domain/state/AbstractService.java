@@ -57,12 +57,16 @@ public abstract class AbstractService {
     }
 
     public AclDetails.Builder generateConsumerGroupAcl(String consumerGroupId, Optional<String> principal, String operation) {
+        return generateConsumerGroupAcl(consumerGroupId, principal, operation, "LITERAL");
+    }
+
+    public AclDetails.Builder generateConsumerGroupAcl(String consumerGroupId, Optional<String> principal, String operation, String pattern) {
         AclDetails.Builder builder = new AclDetails.Builder()
                 .setHost("*")
                 .setName(consumerGroupId)
                 .setOperation(operation)
                 .setPermission("ALLOW")
-                .setPattern("LITERAL")
+                .setPattern(pattern)
                 .setType("GROUP");
 
         principal.ifPresent(builder::setPrincipal);

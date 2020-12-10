@@ -22,4 +22,6 @@ public abstract class ServiceDetails extends AbstractService {
     public List<AclDetails.Builder> getAcls(GetAclOptions options) {
         throw new UnsupportedOperationException("Method getAcls is not implemented.");
     }
+
+    public abstract void validate();
 }
