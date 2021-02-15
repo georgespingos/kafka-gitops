@@ -10,6 +10,10 @@ import java.util.Optional;
 @JsonDeserialize(builder = TopicDetails.Builder.class)
 public interface TopicDetails {
 
+    String getDescription();
+
+    String getMessageSchemaLocation();
+
     Integer getPartitions();
 
     Optional<Integer> getReplication();
