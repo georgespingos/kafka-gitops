@@ -31,7 +31,7 @@ public class ParserService {
     private final File file;
 
     public ParserService(File file) {
-        this.objectMapper = new ObjectMapper(new YAMLFactory());
+        this.objectMapper = new ObjectMapper(new YAMLFactory()).configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         objectMapper.enable(DeserializationFeature.FAIL_ON_READING_DUP_TREE_KEY);
         objectMapper.enable(JsonParser.Feature.STRICT_DUPLICATE_DETECTION);
         objectMapper.registerModule(new Jdk8Module());
